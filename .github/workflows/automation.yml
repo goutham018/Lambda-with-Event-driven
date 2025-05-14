@@ -45,10 +45,10 @@ jobs:
         continue-on-error: true
 
       - name: Terraform Plan
-        run: terraform plan -json > tfplan.json 2>&1
+        run: terraform plan
 
-      - name: Debug
-        run: cat tfplan.json
+      # - name: Debug
+      #   run: cat tfplan.json
 
       - name: Terraform fmt
         run: terraform fmt -recursive
