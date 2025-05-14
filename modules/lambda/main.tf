@@ -41,8 +41,8 @@ resource "aws_iam_role_policy" "lambda_exec" {
         Resource = "arn:aws:logs:*:*:*"
       },
       {
-        Action = "events:PutEvents",
-        Effect = "Allow",
+        Action   = "events:PutEvents",
+        Effect   = "Allow",
         Resource = var.event_bus_arn
       }
     ]

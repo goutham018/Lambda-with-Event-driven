@@ -16,12 +16,12 @@ resource "aws_api_gateway_method" "api-gateway" {
 }
 
 resource "aws_api_gateway_integration" "this" {
-  rest_api_id = aws_api_gateway_rest_api.rest-api-gateway.id
-  resource_id = aws_api_gateway_resource.gateway-resource.id
-  http_method = aws_api_gateway_method.api-gateway.http_method
+  rest_api_id             = aws_api_gateway_rest_api.rest-api-gateway.id
+  resource_id             = aws_api_gateway_resource.gateway-resource.id
+  http_method             = aws_api_gateway_method.api-gateway.http_method
   integration_http_method = "POST"
-  type = "AWS_PROXY"
-  uri = var.lambda_invoke_arn
+  type                    = "AWS_PROXY"
+  uri                     = var.lambda_invoke_arn
 }
 
 resource "aws_lambda_permission" "lambda-permission" {
@@ -31,19 +31,19 @@ resource "aws_lambda_permission" "lambda-permission" {
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.rest-api-gateway.execution_arn}/*/POST/resource"
 }
- 
+
 resource "aws_api_gateway_stage" "this" {
   stage_name    = var.apigateway-stage-name
   rest_api_id   = aws_api_gateway_rest_api.rest-api-gateway.id
-  deployment_id = aws_api_gateway_deployment.gateway-deployment.id 
+  deployment_id = aws_api_gateway_deployment.gateway-deployment.id
 
 }
- 
+
 resource "aws_api_gateway_deployment" "gateway-deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest-api-gateway.id
-  depends_on  = [
-    aws_api_gateway_integration.this,   
-    aws_api_gateway_method.api-gateway         
+  depends_on = [
+    aws_api_gateway_integration.this,
+    aws_api_gateway_method.api-gateway
   ]
 }
 
