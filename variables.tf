@@ -20,7 +20,7 @@ variable "event_bus_name" {
   default = "my-event-bus"
 }
 
-variable "api_gateway_stage_name" {
+variable "apigateway-stage-name" {
   type    = string
   default = "prod"
 }
