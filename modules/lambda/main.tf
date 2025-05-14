@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "my-lambda" {
   function_name = var.lambda_function_name
   runtime       = var.lambda_runtime
-  handler       = "function1.lambda_handler"
+  handler       = "lambda_function_payload.lambda_handler"
   role          = aws_iam_role.lambda_exec.arn
 
   source_code_hash = filebase64sha256("lambda_function_payload.zip")
