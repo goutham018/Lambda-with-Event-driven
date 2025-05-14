@@ -1,4 +1,5 @@
-variable "api_gateway_stage_name" {
+variable "apigateway-stage-name" {
+  description = "The  Stage name."
   type = string
 }
 

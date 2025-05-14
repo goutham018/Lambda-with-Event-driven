@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "this" {
+resource "aws_lambda_function" "my-lambda" {
   function_name = var.lambda_function_name
   runtime       = var.lambda_runtime
   handler       = "function1.lambda_handler"
@@ -50,13 +50,13 @@ resource "aws_iam_role_policy" "lambda_exec" {
 }
 
 output "lambda_function_arn" {
-  value = aws_lambda_function.this.arn
+  value = aws_lambda_function.my-lambda.arn
 }
 
 output "invoke_arn" {
-  value = aws_lambda_function.this.invoke_arn
+  value = aws_lambda_function.my-lambda.invoke_arn
 }
 
 output "function_name" {
-  value = aws_lambda_function.this.function_name
+  value = aws_lambda_function.my-lambda.function_name
 }
